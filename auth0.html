@@ -246,69 +246,199 @@
     <!-- Breadcrumb Section End -->
 
     <!-- divin -->
-    <!-- Login Start -->
-    <div class="login ">
-        <div class="container-fluid ">
-            <div class="row ">
-                <div class="col-lg-6 ">
-                    <div class="register-form ">
-                        <div class="row ">
-                            <div class="col-md-6 ">
-                                <label>First Name</label>
-                                <input class="form-control " type="text " placeholder="First Name ">
-                            </div>
-                            <div class="col-md-6 ">
-                                <label>Last Name"</label>
-                                <input class="form-control" type="text" placeholder="Last Name">
-                            </div>
-                            <div class="col-md-6">
-                                <label>E-mail</label>
-                                <input class="form-control" type="text" placeholder="E-mail">
-                            </div>
-                            <div class="col-md-6">
-                                <label>Mobile No</label>
-                                <input class="form-control" type="text" placeholder="Mobile No">
-                            </div>
-                            <div class="col-md-6">
-                                <label>Password</label>
-                                <input class="form-control" type="text" placeholder="Password">
-                            </div>
-                            <div class="col-md-6">
-                                <label>Retype Password</label>
-                                <input class="form-control" type="text" placeholder="Password">
-                            </div>
-                            <div class="col-md-12">
-                                <button class="button1">Submit</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="login-form">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>E-mail / Username</label>
-                                <input class="form-control" type="text" placeholder="E-mail / Username">
-                            </div>
-                            <div class="col-md-6">
-                                <label>Password</label>
-                                <input class="form-control" type="text" placeholder="Password">
-                            </div>
-                            <div class="col-md-12">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="newaccount">
-                                    <label class="custom-control-label" for="newaccount">Keep me signed in</label>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <button class="button1">Submit</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<body>
+
+<div class="navbar navbar-default">
+<div class="navbar-header">
+  <a class="navbar-brand" href="https://github.com/mindmaster17/teamexpo" >TeamExpo</a>
+  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+  </button>
+</div>
+<div class="navbar-collapse collapse"  >
+    <ul class="nav navbar-nav navbar-right">
+         <li><a href="#" id="logout" style="display: none;">Log Out</a></li>
+    </ul>
+</div>
+</div>
+<br>
+<div class="container">	
+  <form name="registration_form" id="registration_form" method="post" action="#" enctype="multipart/form-data" >
+  <div class="row">
+
+	<div class="col-sm-4">
+		<div class="form-group">
+	      <label for="username">Name</label>
+		  <input type="text" name="username" id="username" class="form-control" placeholder="Enter your name">
+		</div>
+		
+		<div class="form-group">
+	      <label for="email">Email</label>
+		  <input type="text" name="email" id="email" class="form-control" placeholder="Enter your email">
+		</div>
+		
+		<div class="form-group">
+	      <label for="password" >Password</label>
+		  <input type="password" name="password" id="password" class="form-control"  placeholder="Enter your password">
+		</div>
+		<button type="button" id="register" name="register" class="btn btn-success">Register Now</button>
+	</div><!-- end col -->
+	  
+  		</div>
+		<button type="button" id="google" name="google" class="btn btn-success">Google</button>
+	</div>
+	</form>
+
+	<form name="login_form" id="login_form" method="post" action="#" enctype="multipart/form-data" >
+	<div class="col-sm-4">
+		
+		<div class="form-group">
+	      <label for="email">Email</label>
+		  <input type="text" name="login_email" id="login_email" class="form-control" placeholder="Enter your email">
+		</div>
+		
+		<div class="form-group">
+	      <label for="password">Password</label>
+		  <input type="password" name="login_password" id="login_password" class="form-control"  placeholder="Enter your password">
+		</div>
+		<button type="button" id="login" name="login" class="btn btn-success">Login</button>
+	</div><!-- end col -->
+	
+  </div><!--  end row -->		
+  </form>
+</div>
+<br>
+<center> <a href="https://github.com/mindmaster17/teamexpo">TeamExpo</a></center>
+</body>
+	<script type="module">
+	  // Import the functions you need from the SDKs you need
+	  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+	  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
+	  import { getAuth, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithRedirect } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+	  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+
+	  // TODO: Add SDKs for Firebase products that you want to use
+	  // https://firebase.google.com/docs/web/setup#available-libraries getDatabase
+
+	  // Your web app's Firebase configuration
+	  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+	  const firebaseConfig = {
+    	  apiKey: "AIzaSyCkNJFimfRBFgwiFRCNDtTPlo8g-2JIc-M",
+   	  authDomain: "login-page-c3c64.firebaseapp.com",
+   	  databaseURL: "https://login-page-c3c64-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "login-page-c3c64",
+          storageBucket: "login-page-c3c64.appspot.com",
+          messagingSenderId: "426921518510",
+          appId: "1:426921518510:web:98a3252f91b0fdeaa5943f",
+          measurementId: "G-SKKHTLF0BH"
+	  };
+
+	  // Initialize Firebase
+	  const app = initializeApp(firebaseConfig);
+	  const analytics = getAnalytics(app);
+	  const auth = getAuth();
+ 	  const provider = new GoogleAuthProvider()
+	  console.log(app);
+
+	  
+
+			//----- New Registration code start
+	document.getElementById("register").addEventListener("click", function () {
+		var email = document.getElementById("email").value;
+		var password = document.getElementById("password").value;
+		var username = document.getElementById("username").value;
+
+		// For adding Realtime Database
+		createUserWithEmailAndPassword(auth, email, password)
+			.then((res) => {
+			let user = {
+				username: username,
+				email: email,
+				password: password,
+			};
+
+			const db = getDatabase();
+			set(ref(db, `users/${res.user.uid}`), user)
+				.then(() => {
+				alert("new user is registered");
+				window.location = "auth.html";
+				})
+				.catch((err) => {
+				console.log("err=>", err);
+				});
+			})
+			.catch((err) => {
+			console.log("err=>", err);
+			});
+
+		// For new registration
+		createUserWithEmailAndPassword(auth, email, password)
+			.then((userCredential) => {
+			const user = userCredential.user;
+			console.log(user);
+			alert("Registration successfully!!");
+			})
+			.catch((error) => {
+			const errorCode = error.code;
+			const errorMessage = error.message;
+			console.log(errorMessage);
+			alert(error);
+			});
+		});
+		function writeUserData( name, email, imageUrl) {
+		  const db = getDatabase();
+		  set(ref(db, 'users/' + userId), {
+		    username: name,
+		    email: email,
+		    profile_picture : imageUrl,
+		  });
+		}
+		
+		
+		//----- End
+
+
+	  //----- Login code start	  
+	  document.getElementById("login").addEventListener("click", function() {
+		  var email =  document.getElementById("login_email").value;
+		  var password = document.getElementById("login_password").value;
+
+		  signInWithEmailAndPassword(auth, email, password)
+		  .then((userCredential) => {
+		    // Signed in 
+		    const user = userCredential.user;
+		    console.log(user);
+		    alert(user.email+" Login successfully!!!");
+		    document.getElementById('logout').style.display = 'block';
+		    // ...
+		  })
+		  .catch((error) => {
+		    const errorCode = error.code;
+		    const errorMessage = error.message;
+		    console.log(errorMessage);
+		    alert(errorMessage);
+		  });		  		  
+	  });
+	  //----- End
+
+	  //----- Logout code start	  
+	  document.getElementById("logout").addEventListener("click", function() {
+		  signOut(auth).then(() => {
+			  // Sign-out successful.
+			  console.log('Sign-out successful.');
+			  alert('Sign-out successful.');
+			  document.getElementById('logout').style.display = 'none';
+			}).catch((error) => {
+			  // An error happened.
+			  console.log('An error happened.');
+			});		  		  
+	  });
+	  //----- End
+
+	</script>
     <!-- Login End -->
     <!-- Checkout Section End -->
 

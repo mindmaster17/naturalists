@@ -1,0 +1,58 @@
+.card1 {
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-color: #fff;
+}
+
+.card2 {
+    height: 25vh;
+    width: 80vw;
+    background-size: cover;
+    background-color: rgb(223, 237, 235);
+    border-radius: 25px;
+    padding: 20px;
+    padding-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 160px
+}
+
+.card3 {
+    height: 65vh;
+    width: 80vw;
+    background-size: cover;
+    background-color: rgb(223, 237, 235);
+    border-radius: 25px;
+    padding: 5px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 160px
+}
+
+.font {
+    font-size: 35px;
+    font-family: roboto;
+    font-weight: 700
+}
+
+.para1 {
+    font-size: 25px;
+    font-family: roboto;
+    color: aliceblue;
+    font-weight: 200;
+}
+
+.para2 {
+    font-size: 25px;
+    font-family: roboto;
+    color: rgba(51, 55, 53, 0.929);
+    font-weight: 500;
+}
+
+.head1 {
+    font-size: 25px;
+    font-family: roboto;
+    color: rgb(11, 11, 11);
+    font-weight: 700;
+}

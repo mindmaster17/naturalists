@@ -235,10 +235,7 @@
                         </div>
 
                     </div>
-                    <div class="d-flex flex-row ">
-                        <p class="font ">Sign up </p>
-                        <p class="font ml-auto ">Sign in</p>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -270,7 +267,8 @@
             <form name="registration_form" id="registration_form" method="post" action="#" enctype="multipart/form-data">
                 <div class="row">
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 ml-3">
+                        <p class="font ml-auto ">Sign in</p>
                         <div class="form-group">
                             <label for="username">Name</label>
                             <input type="text" name="username" id="username" class="form-control" placeholder="Enter your name">
@@ -296,7 +294,11 @@
             </form>
 
             <form name="login_form" id="login_form" method="post" action="#" enctype="multipart/form-data">
-                <div class="col-sm-4">
+
+                <p class="font mt-3 ml-2">Sign up </p>
+
+
+                <div class="col-sm-4 ">
 
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -319,131 +321,23 @@
 
     </body>
     <script type="module">
-	  // Import the functions you need from the SDKs you need
-	  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
-	  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
-	  import { getAuth, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithRedirect } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
-	  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+        // Import the functions you need from the SDKs you need import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js"; import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js"; import {
+        getAuth, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithRedirect } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js"; import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+        // TODO: Add SDKs for Firebase products that you want to use // https://firebase.google.com/docs/web/setup#available-libraries getDatabase // Your web app's Firebase configuration // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = { apiKey: "AIzaSyCkNJFimfRBFgwiFRCNDtTPlo8g-2JIc-M", authDomain: "login-page-c3c64.firebaseapp.com", databaseURL: "https://login-page-c3c64-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "login-page-c3c64",
+        storageBucket: "login-page-c3c64.appspot.com", messagingSenderId: "426921518510", appId: "1:426921518510:web:98a3252f91b0fdeaa5943f", measurementId: "G-SKKHTLF0BH" }; // Initialize Firebase const app = initializeApp(firebaseConfig); const analytics
+        = getAnalytics(app); const auth = getAuth(); const provider = new GoogleAuthProvider() console.log(app); //----- New Registration code start document.getElementById("register").addEventListener("click", function () { var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value; var username = document.getElementById("username").value; // For adding Realtime Database createUserWithEmailAndPassword(auth, email, password) .then((res) => { let user = { username: username,
+        email: email, password: password, }; const db = getDatabase(); set(ref(db, `users/${res.user.uid}`), user) .then(() => { alert("new user is registered"); window.location = "auth.html"; }) .catch((err) => { console.log("err=>", err); }); }) .catch((err)
+        => { console.log("err=>", err); }); // For new registration createUserWithEmailAndPassword(auth, email, password) .then((userCredential) => { const user = userCredential.user; console.log(user); alert("Registration successfully!!"); }) .catch((error)
+        => { const errorCode = error.code; const errorMessage = error.message; console.log(errorMessage); alert(error); }); }); function writeUserData( name, email, imageUrl) { const db = getDatabase(); set(ref(db, 'users/' + userId), { username: name,
+        email: email, profile_picture : imageUrl, }); } //----- End //----- Login code start document.getElementById("login").addEventListener("click", function() { var email = document.getElementById("login_email").value; var password = document.getElementById("login_password").value;
+        signInWithEmailAndPassword(auth, email, password) .then((userCredential) => { // Signed in const user = userCredential.user; console.log(user); alert(user.email+" Login successfully!!!"); document.getElementById('logout').style.display = 'block';
+        // ... }) .catch((error) => { const errorCode = error.code; const errorMessage = error.message; console.log(errorMessage); alert(errorMessage); }); }); //----- End //----- Logout code start document.getElementById("logout").addEventListener("click",
+        function() { signOut(auth).then(() => { // Sign-out successful. console.log('Sign-out successful.'); alert('Sign-out successful.'); document.getElementById('logout').style.display = 'none'; }).catch((error) => { // An error happened. console.log('An
+        error happened.'); }); }); //----- End
 
-	  // TODO: Add SDKs for Firebase products that you want to use
-	  // https://firebase.google.com/docs/web/setup#available-libraries getDatabase
-
-	  // Your web app's Firebase configuration
-	  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-	  const firebaseConfig = {
-    	  apiKey: "AIzaSyCkNJFimfRBFgwiFRCNDtTPlo8g-2JIc-M",
-   	  authDomain: "login-page-c3c64.firebaseapp.com",
-   	  databaseURL: "https://login-page-c3c64-default-rtdb.asia-southeast1.firebasedatabase.app",
-          projectId: "login-page-c3c64",
-          storageBucket: "login-page-c3c64.appspot.com",
-          messagingSenderId: "426921518510",
-          appId: "1:426921518510:web:98a3252f91b0fdeaa5943f",
-          measurementId: "G-SKKHTLF0BH"
-	  };
-
-	  // Initialize Firebase
-	  const app = initializeApp(firebaseConfig);
-	  const analytics = getAnalytics(app);
-	  const auth = getAuth();
- 	  const provider = new GoogleAuthProvider()
-	  console.log(app);
-
-	  
-
-			//----- New Registration code start
-	document.getElementById("register").addEventListener("click", function () {
-		var email = document.getElementById("email").value;
-		var password = document.getElementById("password").value;
-		var username = document.getElementById("username").value;
-
-		// For adding Realtime Database
-		createUserWithEmailAndPassword(auth, email, password)
-			.then((res) => {
-			let user = {
-				username: username,
-				email: email,
-				password: password,
-			};
-
-			const db = getDatabase();
-			set(ref(db, `users/${res.user.uid}`), user)
-				.then(() => {
-				alert("new user is registered");
-				window.location = "auth.html";
-				})
-				.catch((err) => {
-				console.log("err=>", err);
-				});
-			})
-			.catch((err) => {
-			console.log("err=>", err);
-			});
-
-		// For new registration
-		createUserWithEmailAndPassword(auth, email, password)
-			.then((userCredential) => {
-			const user = userCredential.user;
-			console.log(user);
-			alert("Registration successfully!!");
-			})
-			.catch((error) => {
-			const errorCode = error.code;
-			const errorMessage = error.message;
-			console.log(errorMessage);
-			alert(error);
-			});
-		});
-		function writeUserData( name, email, imageUrl) {
-		  const db = getDatabase();
-		  set(ref(db, 'users/' + userId), {
-		    username: name,
-		    email: email,
-		    profile_picture : imageUrl,
-		  });
-		}
-		
-		
-		//----- End
-
-
-	  //----- Login code start	  
-	  document.getElementById("login").addEventListener("click", function() {
-		  var email =  document.getElementById("login_email").value;
-		  var password = document.getElementById("login_password").value;
-
-		  signInWithEmailAndPassword(auth, email, password)
-		  .then((userCredential) => {
-		    // Signed in 
-		    const user = userCredential.user;
-		    console.log(user);
-		    alert(user.email+" Login successfully!!!");
-		    document.getElementById('logout').style.display = 'block';
-		    // ...
-		  })
-		  .catch((error) => {
-		    const errorCode = error.code;
-		    const errorMessage = error.message;
-		    console.log(errorMessage);
-		    alert(errorMessage);
-		  });		  		  
-	  });
-	  //----- End
-
-	  //----- Logout code start	  
-	  document.getElementById("logout").addEventListener("click", function() {
-		  signOut(auth).then(() => {
-			  // Sign-out successful.
-			  console.log('Sign-out successful.');
-			  alert('Sign-out successful.');
-			  document.getElementById('logout').style.display = 'none';
-			}).catch((error) => {
-			  // An error happened.
-			  console.log('An error happened.');
-			});		  		  
-	  });
-	  //----- End
-
-	</script>
+    </script>
 
     <!-- Login End -->
     <!-- Checkout Section End -->
